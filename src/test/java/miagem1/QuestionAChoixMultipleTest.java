@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -12,14 +13,11 @@ import static org.junit.Assert.*;
 public class QuestionAChoixMultipleTest {
 
     private QuestionAChoixMultiple question;
-    private List<Integer> list;
+
     @Before
     public void setUp() throws Exception {
         // given : une instance de question à choix multiple avec la liste des indices pour les bonnes réponses
-        this.list = new ArrayList<Integer>();
-        list.add(1);
-        list.add(2);
-        this.question = new QuestionAChoixMultiple("un énoncé", list);
+        this.question = new QuestionAChoixMultiple("un énoncé", new ArrayList<Integer>(Arrays.asList(1,2)));
     }
 
     @Test
@@ -50,7 +48,7 @@ public class QuestionAChoixMultipleTest {
         // and : on demande le score de chaque indice à la question
         float resScore = this.question.getScoreForIndice(firstIndiceEtudiant);
         resScore = resScore + this.question.getScoreForIndice(secIndiceEtudiant);
-        // then : le score obtenu est 100
+        // then : le score obtenu est 0
         assertEquals(0f, resScore, 0.001f);
     }
 }
